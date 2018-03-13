@@ -1,0 +1,18 @@
+{
+"manifest_version":2,
+"name":"one-click hello_world",
+"description":"my first chrome extension-browser action",
+"version":"1.0",
+"permissions":[
+    "https://sou.zhaopin.com/*"
+    ],
+"browser_action":{
+    "default_popup":"my.html"
+    },
+	"content_scripts": [
+		{
+		  "matches": ["https://sou.zhaopin.com/*","http://sou.zhaopin.com/*"],
+		  "js": ["jquery.1.8.js","myscript.js"]
+		}
+	]
+}
