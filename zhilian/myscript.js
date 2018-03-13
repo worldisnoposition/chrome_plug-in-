@@ -10,7 +10,6 @@ $(function () {
 		var newlist = document.getElementsByClassName("newlist")
 		var toclick = []
 		var result = []
-		debugger
 		for(i=1;i<newlist.length;i++){
 			//var a = {}
 			var zw_value = {}
@@ -115,18 +114,24 @@ $(function () {
 
 	init();
 	//downloadFile();
-	//  
-	debugger
 	console.log(_this.zw_values)
 	console.log($("body"))
 	var data = function(){
-		var result = "";
+		debugger
 		for(a in _this.zw_values){
-			result += JSON.stringify(_this.zw_values[a]);
-			console.log(JSON.stringify(_this.zw_values[a]))
-			$.post("http://localhost:9202/ceshi/ceshi/"+_this.zw_values[a].url+"?pretty",JSON.stringify(_this.zw_values[a]))    
+			openNewPage(a)  
 		}
-		setInterval(nextPage,1000)	
+		setInterval(nextPage,30000)	
+	}
+	var openNewPage = function(a){
+		var row = _this.zw_values[a];
+		window.open("http://jobs.zhaopin.com/"+row.url)
+		//ifame.onclick = function(){
+		    //window.open(row.url);
+		//};
+		row = JSON.stringify(_this.zw_values[a]);
+		console.log(row)
+		$.post("http://localhost:9202/ceshi/ceshi/"+_this.zw_values[a].url+"?pretty",row) 
 	}
 	data();    
 });

@@ -1,0 +1,4 @@
+$(function () {
+	debugger
+	window.close()
+});
