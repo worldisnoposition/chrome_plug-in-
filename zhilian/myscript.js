@@ -124,14 +124,15 @@ $(function () {
 		setInterval(nextPage,30000)	
 	}
 	var openNewPage = function(a){
+		debugger
 		var row = _this.zw_values[a];
-		window.open("http://jobs.zhaopin.com/"+row.url)
+		//window.open("http://jobs.zhaopin.com/"+row.url)
 		//ifame.onclick = function(){
 		    //window.open(row.url);
 		//};
 		row = JSON.stringify(_this.zw_values[a]);
 		console.log(row)
-		$.post("http://localhost:9202/ceshi/ceshi/"+_this.zw_values[a].url+"?pretty",row) 
+		$.post("http://localhost:9202/zhilian/"+_this.zw_values[a].url+"?pretty",row) 
 	}
 	data();    
 });
