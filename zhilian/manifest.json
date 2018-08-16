@@ -17,6 +17,14 @@
 		{
 		  "matches": ["https://jobs.zhaopin.com/*","http://jobs.zhaopin.com/*"],
 		  "js": ["jquery.1.8.js","jobs.js"]
+		},
+		{
+		  "matches": ["https://www.zhipin.com/c101010100/*"],
+		  "js": ["jquery.1.8.js","boss.js"]
+		},
+		{
+		  "matches": ["https://www.zhipin.com/job_detail/*"],
+		  "js": ["jquery.1.8.js","bossdetail.js"]
 		}
 	]
 }
