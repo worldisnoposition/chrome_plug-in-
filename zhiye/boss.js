@@ -31,4 +31,45 @@ $(function () {
 	console.log(zw_values)
 	//todo 原始数据以获取完毕，剩下往elastic传，以及翻页
 	
+	//for(value in zw_values){
+		debugger
+		value = zw_values[0];
+		console.log(value)
+		//$.post("http://localhost:9202/zhiye/"+value.第三方唯一标识+"?pretty.png",value)
+	//}
+	//var toClick = document.querySelector('.page').querySelector('.next').click();
+	
+	//下载
+	var downloadFile = function(){
+		var eleTextarea = JSON.stringify(zw_values)
+		var eleButton = document.querySelector('input')
+
+		// 下载文件方法
+		var funDownload = function (content, filename) {
+			var eleLink = document.createElement('a')
+			eleLink.download = filename
+			eleLink.style.display = 'none'
+			// 字符内容转变成blob地址
+			var blob = new Blob([content])
+			eleLink.href = URL.createObjectURL(blob)
+			// 触发点击
+			document.body.appendChild(eleLink)
+			eleLink.click();
+			// 然后移除
+			document.body.removeChild(eleLink)
+		};
+
+		if ('download' in document.createElement('a')) {
+			// 作为test.html文件下载
+			eleButton.addEventListener('click', function () {
+				funDownload(eleTextarea, "boss爬取记录_"+(new Date())+"_"+'.html')  
+			})
+		} else {
+			eleButton.onclick = function () {
+				alert('浏览器不支持')   
+			};
+		}
+		eleButton.click()
+	}
+	downloadFile();
 })
