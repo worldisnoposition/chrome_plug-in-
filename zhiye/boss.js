@@ -33,7 +33,7 @@ $(function () {
 	
 	//for(value in zw_values){
 		debugger
-		value = zw_values[0];
+		value = zw_values[0]; 
 		console.log(value)
 		//$.post("http://localhost:9202/zhiye/"+value.第三方唯一标识+"?pretty.png",value)
 	//}
