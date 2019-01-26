@@ -1,7 +1,7 @@
 {
 "manifest_version":2,
-"name":"one-click hello_world",
-"description":"my first chrome extension-browser action",
+"name":"WORK_SPYDER_MAN",
+"description":"the plugin can crawl work information from website automaticly",
 "version":"1.0",
 "permissions":[
     "https://sou.zhaopin.com/*"
@@ -19,12 +19,16 @@
 		  "js": ["jquery.1.8.js","jobs.js"]
 		},
 		{
-		  "matches": ["https://www.zhipin.com/c101010100/*"],
+		  "matches": ["https://www.zhipin.com/*"],
 		  "js": ["jquery.1.8.js","boss.js"]
 		},
 		{
 		  "matches": ["https://www.zhipin.com/job_detail/*"],
 		  "js": ["jquery.1.8.js","bossdetail.js"]
+		},
+		{
+		  "matches": ["https://cn.100offer.com/job_positions"],
+		  "js": ["jquery.1.8.js","100offer.js"]
 		}
 	]
 }
