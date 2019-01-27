@@ -21,10 +21,12 @@ $(function () {
 		zw_value.公司名=info_company.getElementsByTagName("a")[0].innerText
 		zw_value.公司规模=info_company.getElementsByTagName("p")[0].innerHTML.split('<em class="vline"></em>')[2] 
 		zw_value.公司详情=info_company.getElementsByTagName("p")[0].innerHTML.split('<em class="vline"></em>').slice(0,2).toString()
+		zw_value.公司唯一标识 = info_company.getElementsByTagName("a")[0].href
+		zw_value.福利 = ""
 		var publishDate = info_publis.getElementsByTagName("p")[0].innerText
 		var date = new Date()
 		zw_value.职位日期=date.getYear()+1900+'-'+publishDate.substr(3,2)+'-'+publishDate.substr(6,2)
-		zw_value.爬取日期=date.getYear()+1900+'-'+(Array(2).join(0)+date.getMonth()).slice(-2)+'-'+(Array(2).join(0)+date.getDate()).slice(-2)
+		zw_value.爬取日期=date.getYear()+1900+'-'+(Array(2).join(0)+date.getMonth()+1).slice(-2)+'-'+(Array(2).join(0)+date.getDate()).slice(-2)
 		zw_value.其他信息=''
 		zw_values.push(zw_value)
 	}
@@ -62,7 +64,9 @@ $(function () {
 		if ('download' in document.createElement('a')) {
 			// 作为test.html文件下载
 			eleButton.addEventListener('click', function () {
-				funDownload(eleTextarea, "boss爬取记录_"+(new Date())+"_"+'.html')  
+				funDownload(eleTextarea, "boss爬取记录_"+(new Date())+"_"+document.getElementsByClassName("page")[0].getElementsByClassName("cur")[0].innerText+'.html')  
+				debugger
+				document.getElementsByClassName("next")[0].click()
 			})
 		} else {
 			eleButton.onclick = function () {
