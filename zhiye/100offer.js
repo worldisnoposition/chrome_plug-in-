@@ -1,5 +1,5 @@
 $(function () {
-
+    console.log("asdf")
     var current = document.getElementsByClassName("current")[0].innerText
 
     var getInfo = function () {
@@ -114,12 +114,17 @@ $(function () {
         }
         eleButton.click()
     }
+    var upload = function(){
+        $.post("//localhost:8080/entry/chufa"+_this.zw_values[a].url+"?pretty",row) 
 
+    }
     var startWork = function () {
+        debugger
         initDownloadElement()
         var datas = getInfo()
-        saveInfo(datas)
-        openNextPage()
+        // saveInfo(datas)
+        upload(datas)
+        // openNextPage()
     }
     var count = ""
     var startNext = function () {

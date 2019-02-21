@@ -109,10 +109,18 @@ $(function () {
         initDownloadElement()
         var datas = getInfo()
         //console.log(datas)
-        saveInfo(datas)
-        openNextPage()
+        // saveInfo(datas)
+        // openNextPage()
+        upload(datas)
     }
     var count = ""
+    
+    var upload = function(datas){
+        debugger
+        //注意这个png，这是解决跨域的关键
+        $.post("http://localhost:8080/entry/chufa?pretty.png",JSON.stringify(datas)) 
+    }
+
     var startNext = function () {
         //判断page是否相等
         count += current
