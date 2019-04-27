@@ -26,7 +26,7 @@ $(function () {
 		var publishDate = info_publis.getElementsByTagName("p")[0].innerText
 		var date = new Date()
 		zw_value.职位日期=date.getYear()+1900+'-'+publishDate.substr(3,2)+'-'+publishDate.substr(6,2)
-		zw_value.爬取日期=date.getYear()+1900+'-'+(Array(2).join(0)+date.getMonth()+1).slice(-2)+'-'+(Array(2).join(0)+date.getDate()).slice(-2)
+		zw_value.爬取日期=date.getYear()+1900+'-'+(Array(2).join(0)+(date.getMonth()+1)).slice(-2)+'-'+(Array(2).join(0)+date.getDate()).slice(-2)
 		zw_value.其他信息=''
 		zw_values.push(zw_value)
 	}
@@ -34,7 +34,6 @@ $(function () {
 	//todo 原始数据以获取完毕，剩下往elastic传，以及翻页
 	
 	//for(value in zw_values){
-		debugger
 		value = zw_values[0]
 		console.log(value)
 		//$.post("http://localhost:9202/zhiye/"+value.第三方唯一标识+"?pretty.png",value)
@@ -75,5 +74,14 @@ $(function () {
 		}
 		eleButton.click()
 	}
-	downloadFile();
+	// downloadFile();
+	
+	var upload = function(datas){
+        //注意这个png，这是解决跨域的关键
+        $.post("http://localhost:8080/entry/chufa?",JSON.stringify(datas),function(){
+			document.getElementsByClassName("next")[0].click()
+
+		}) 
+    }
+	upload(zw_values);
 })

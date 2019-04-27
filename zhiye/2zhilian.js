@@ -3,7 +3,6 @@ $(function () {
     var current
 
     var getInfo = function () {
-        debugger
         var positionArray = document.querySelectorAll(".contentpile__content__wrapper")
         var zw_values = []
         for (var i = 0; i < positionArray.length; i++) {
@@ -29,7 +28,7 @@ $(function () {
                 // var publishDate = info_publis.getElementsByTagName("p")[0].innerText  
                 var date = new Date()
                 //zw_value.职位日期 = date.getYear() + 1900 + '-' + publishDate.substr(3, 2) + '-' + publishDate.substr(6, 2)
-                zw_value.爬取日期=date.getYear()+1900+'-'+(Array(2).join(0)+date.getMonth()+1).slice(-2)+'-'+(Array(2).join(0)+date.getDate()).slice(-2)
+                zw_value.爬取日期=date.getYear()+1900+'-'+(Array(2).join(0)+(date.getMonth()+1)).slice(-2)+'-'+(Array(2).join(0)+date.getDate()).slice(-2)
                 zw_value.其他信息 = ''
             } catch (error) {
                 console.log(error)
@@ -41,7 +40,7 @@ $(function () {
 
     var getWelfare = function (position) {
         var result = ""
-        var welfare = company.getElementsByClassName("contentpile__content__wrapper__item__info__box__welfare__item")
+        var welfare = document.getElementsByClassName("contentpile__content__wrapper__item__info__box__welfare__item")
         for (var i = 0; i < welfare.length; i++) {
             result += welfare.innerText+","
         }
@@ -49,7 +48,6 @@ $(function () {
     }
 
     var openNextPage = function () {
-        debugger
         var next = document.getElementsByClassName("btn soupager__btn")[1]
         if (next != undefined) {
             next.click()
@@ -87,7 +85,6 @@ $(function () {
             eleLink.click();
             // 然后移除
 			// document.body.removeChild(eleButton)
-            debugger
             console.log(eleButton)
         };
 
@@ -104,21 +101,33 @@ $(function () {
         }
         eleButton.click()
     }
-
     var startWork = function () {
         initDownloadElement()
         var datas = getInfo()
         //console.log(datas)
-        // saveInfo(datas)
-        // openNextPage()
+        //  saveInfo(datas)
         upload(datas)
     }
     var count = ""
     
     var upload = function(datas){
-        debugger
+        try{
         //注意这个png，这是解决跨域的关键
-        $.post("http://localhost:8080/entry/chufa?pretty.png",JSON.stringify(datas)) 
+        $.post("http://localhost:8080/entry/chufa?",JSON.stringify(datas),function(){
+            openNextPage();
+        })  
+        }catch(error){
+            log.error('wo da de'+error);
+        }
+        // $.ajax({
+        //     type: 'POST',
+        //     url: "http://localhost:8080/entry/chufa?pretty.png",
+        //     data: JSON.stringify(datas),
+        //     success: function(){
+        //         openNextPage()},
+        //     dataType: "json",
+        //     headers:{"Access-Control-Allow-Origin": "http://localhost:8080"}
+        //   });
     }
 
     var startNext = function () {

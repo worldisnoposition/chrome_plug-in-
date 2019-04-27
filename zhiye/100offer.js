@@ -1,3 +1,4 @@
+console.log("asdfasdf")
 $(function () {
     console.log("asdf")
     var current = document.getElementsByClassName("current")[0].innerText
@@ -31,7 +32,7 @@ $(function () {
                 // var publishDate = info_publis.getElementsByTagName("p")[0].innerText  
                 var date = new Date()
                 //zw_value.职位日期 = date.getYear() + 1900 + '-' + publishDate.substr(3, 2) + '-' + publishDate.substr(6, 2)
-                zw_value.爬取日期=date.getYear()+1900+'-'+(Array(2).join(0)+date.getMonth()+1).slice(-2)+'-'+(Array(2).join(0)+date.getDate()).slice(-2)
+                zw_value.爬取日期=date.getYear()+1900+'-'+(Array(2).join(0)+(date.getMonth()+1)).slice(-2)+'-'+(Array(2).join(0)+date.getDate()).slice(-2)
                 zw_value.其他信息 = ''
             } catch (error) {
                 console.log(error)
@@ -97,7 +98,6 @@ $(function () {
             eleLink.click();
             // 然后移除
 			// document.body.removeChild(eleButton)
-            debugger
             console.log(eleButton)
         };
 
@@ -114,17 +114,17 @@ $(function () {
         }
         eleButton.click()
     }
-    var upload = function(){
-        $.post("//localhost:8080/entry/chufa"+_this.zw_values[a].url+"?pretty",row) 
+    var upload = function(datas){
+        $.post("http://localhost:8080/entry/chufa?",JSON.stringify(datas),function(){
+            openNextPage();
+        }) 
 
     }
     var startWork = function () {
-        debugger
         initDownloadElement()
         var datas = getInfo()
         // saveInfo(datas)
         upload(datas)
-        // openNextPage()
     }
     var count = ""
     var startNext = function () {

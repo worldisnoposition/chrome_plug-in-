@@ -132,7 +132,10 @@ $(function () {
 		//};
 		row = JSON.stringify(_this.zw_values[a]);
 		console.log(row)
-		$.post("http://localhost:9202/zhilian/"+_this.zw_values[a].url+"?pretty",row) 
+		$.post("http://localhost:9202/zhilian/"+_this.zw_values[a].url+"?pretty",row,function(){
+			debugger
+			alert(1)
+		}) 
 	}
 	data();    
 });

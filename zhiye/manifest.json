@@ -22,16 +22,6 @@
 		},
 		{
 			"matches": [
-				"https://jobs.zhaopin.com/*",
-				"http://jobs.zhaopin.com/*"
-			],
-			"js": [
-				"jquery.1.8.js",
-				"jobs.js"
-			]
-		},
-		{
-			"matches": [
 				"https://www.zhipin.com/*"
 			],
 			"js": [
@@ -50,11 +40,21 @@
 		},
 		{
 			"matches": [
-				"https://cn.100offer.com/job_positions"
+				"https://cn.100offer.com/job_positions*"
 			],
 			"js": [
 				"jquery.1.8.js",
 				"100offer.js"
+			]
+		},
+		{
+			"matches": [
+				"http://localhost:8080/*"
+			],
+			"js": [
+				"require.js",
+				"depend.js",
+				"test.js"
 			]
 		}
 	]
