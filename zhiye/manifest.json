@@ -17,6 +17,7 @@
 			],
 			"js": [
 				"jquery.1.8.js",
+				"depend.js",
 				"2zhilian.js"
 			]
 		},
@@ -26,6 +27,7 @@
 			],
 			"js": [
 				"jquery.1.8.js",
+				"depend.js",
 				"boss.js"
 			]
 		},
@@ -44,6 +46,7 @@
 			],
 			"js": [
 				"jquery.1.8.js",
+				"depend.js",
 				"100offer.js"
 			]
 		},
