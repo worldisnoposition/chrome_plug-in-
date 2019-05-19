@@ -1,6 +1,4 @@
 var current
-var eleLink
-var eleButton
 var getInfo = function () {
     let positionArray = document.querySelectorAll(".position-item")
     let zw_values = []
@@ -66,48 +64,6 @@ var openNextPage = function () {
     }
 }
 
-var saveInfo = function (datas) {
-    downloadFile(datas);
-}
-var initDownloadElement = function () {
-    eleLink = document.createElement('a')
-    eleLink.innerText = "哈哈哈"
-    eleLink.style.display = 'none'
-    eleButton = document.createElement('input')
-    eleButton.innerText = "哈哈哈"
-    eleButton.style.display = 'none'
-    document.body.appendChild(eleLink)
-    document.body.appendChild(eleButton)
-}
-
-var downloadFile = function (datas) {
-    let eleTextarea = JSON.stringify(datas)
-
-    // 下载文件方法
-    let funDownload = function (content, filename) {
-        eleLink.download = filename
-        // 字符内容转变成blob地址
-        let blob = new Blob([content])
-        eleLink.href = URL.createObjectURL(blob)
-        eleLink.click();
-        // 然后移除
-        // document.body.removeChild(eleButton)
-        console.log(eleButton)
-    };
-
-    if ('download' in document.createElement('a')) {
-        // 作为test.html文件下载
-        eleButton.addEventListener('click', function () {
-            eleButton.removeEventListener("click", this, false);
-            funDownload(eleTextarea, "100offer爬取记录_" + (new Date()) + "_" + current + '.html')
-        })
-    } else {
-        eleButton.onclick = function () {
-            alert('浏览器不支持')
-        };
-    }
-    eleButton.click()
-}
 var startNext = function () {
     //判断page是否相等
     if (current != document.getElementsByClassName("current")[0].innerText) {
@@ -118,12 +74,17 @@ var startNext = function () {
     }
 }
 
+var initSearch = function () {
+    let bigSearchInput = document.getElementById('big-search-input')
+    bigSearchInput.value ? a.value = window.location.href.split('jobName=')[1] : console.log('开始爬取')
+}
+
 var startWork = function () {
+    initSearch()
     current = document.getElementsByClassName("current")[0].innerText
     initDownloadElement()
     let datas = getInfo()
-    // saveInfo(datas)
-    upload(datas)
+    saveInfo(datas)
 }
 var checkLoadEnd = function (){
     +    setTimeout(() => {

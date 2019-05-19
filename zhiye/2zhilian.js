@@ -1,7 +1,5 @@
 
 var current
-var eleLink
-var eleButton
 var count = ""
 
 var getInfo = function () {
@@ -57,57 +55,10 @@ var openNextPage = function () {
     }
 }
 
-var saveInfo = function (datas) {
-    downloadFile(datas);
-}
-
-var initDownloadElement = function () {
-    current = document.getElementsByClassName("soupager__index soupager__index--active")[0].innerText
-    eleLink = document.createElement('a')
-    eleLink.innerText = "哈哈哈"
-    eleLink.style.display = 'none'
-    eleButton = document.createElement('input')
-    eleButton.innerText = "哈哈哈"
-    eleButton.style.display = 'none'
-    document.body.appendChild(eleLink)
-    document.body.appendChild(eleButton)
-}
-
-var downloadFile = function (datas) {
-    let eleTextarea = JSON.stringify(datas)
-
-    // 下载文件方法
-    let funDownload = function (content, filename) {
-        eleLink.download = filename
-        // 字符内容转变成blob地址
-        var blob = new Blob([content])
-        eleLink.href = URL.createObjectURL(blob)
-        eleLink.click();
-        // 然后移除
-        // document.body.removeChild(eleButton)
-        console.log(eleButton)
-    };
-
-    if ('download' in document.createElement('a')) {
-        // 作为test.html文件下载
-        eleButton.addEventListener('click', function () {
-            eleButton.removeEventListener("click", this, false);
-            funDownload(eleTextarea, "智联爬取记录_" + (new Date()) + "_" + current + '.html')
-        })
-    } else {
-        eleButton.onclick = function () {
-            alert('浏览器不支持')
-        };
-    }
-    eleButton.click()
-}
-
 var startWork = function () {
     initDownloadElement()
-    var datas = getInfo()
-    //不走接口那么也可以保存到本地
-    //  saveInfo(datas)
-    upload(datas)
+    let datas = getInfo()
+    saveInfo(datas)
 }
 
 var startNext = function () {
