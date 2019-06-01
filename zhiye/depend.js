@@ -6,21 +6,41 @@ var current
 //各个js回调这里的函数，统一由这个js，上传
 var upload = function (datas) {
     try {
-        $.post("http://localhost:8080/entry/chufa?", JSON.stringify(datas), function (data) {
-            debugger
-            console.log(data)
-            setTimeout(openNextPage, data)
-            // openNextPage();
-        })
+        setTimeout(openNextPage, 1000)
+        // $.post("http://localhost:8080/zhiye/chufa?", JSON.stringify(datas), function (data) {
+        //     debugger
+        //     console.log(data)
+        //     setTimeout(openNextPage, data)
+        //     // openNextPage();
+        // })
     } catch (error) {
-        log.error('系统异常了' + error);
+        console.error('系统异常了' + error);
     }
 }
+
+var uploadSingle = function (data,callback){
+    $.post("http://localhost:8080/zhiye/saveSingleData?", JSON.stringify(data), function (resp) {
+            console.log(resp)
+            callback(resp);
+            // openNextPage();
+        }).error(function(error){
+            console.log(error)
+            localStorage.bossDetailErrorUrlArray = localStorage.bossDetailErrorUrlArray ? window.location.href + 'Ж' : localStorage.bossDetailErrorUrlArray + window.location.href + 'Ж'
+            callback(500);
+        })
+}
+
 
 var saveInfo = function (datas) {
     //不走接口那么也可以保存到本地
     // downloadFile(datas);
     upload(datas)
+}
+
+var saveSingleInfo = function (datas,callback) {
+    //不走接口那么也可以保存到本地
+    // downloadFile(datas);
+    uploadSingle(datas,callback)
 }
 
 var initDownloadElement = function () {
