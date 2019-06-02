@@ -45,7 +45,9 @@ var getSingleInfo = function () {
 // console.log(getSingleInfo())
 window.onload = saveSingleInfo(getSingleInfo(), function (resp) {
     debugger
-    localStorage.bossDetailUrlArray && setTimeout(window.open(localStorage.bossDetailUrlArray.split('Ж')[0], '_self'), resp)
+    localStorage.bossDetailUrlArray && setTimeout(function(){window.open(localStorage.bossDetailUrlArray.split('Ж')[0], '_self')}, resp)
 })
 //todo调用下一页
 //https://www.zhipin.com/job_detail/1afdc29e81e2fa2b03d53N-9FVQ~.html
+//1.公司要求分词，存表（分表），倒排索引
+//echart
